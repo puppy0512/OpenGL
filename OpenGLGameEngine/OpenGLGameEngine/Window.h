@@ -1,0 +1,45 @@
+#pragma once
+#include <stdio.h>
+#include <GL/glew.h>
+#include<GLFW/glfw3.h>
+
+class Window
+{
+public:
+	Window();
+	Window(GLint windowWidth, GLint windowHeight);
+	int initialize();
+
+	GLfloat getBufferWidth() { return bufferWidth; }
+	GLfloat getBufferHeight() { return bufferHeight; }
+
+	bool getShouldClose() {return glfwWindowShouldClose(mainWindow); }
+	bool* getKeys() { return keys; }
+	GLfloat getXChange();
+	GLfloat getYChange();
+	GLfloat getXOffset();
+	GLfloat getYOffset();
+	void swapBuffers() { glfwSwapBuffers(mainWindow); }
+	~Window();
+private:
+	GLFWwindow *mainWindow;
+	GLint width, height;
+	GLint bufferWidth, bufferHeight;
+	
+	// certain key is pressed -> True, otherwise false
+	bool keys[1024];
+	GLfloat fov = 0.0f;
+	GLfloat lastX = 0.0f;
+	GLfloat lastY = 0.0f;
+	GLfloat xChange = 0.0f;
+	GLfloat yChange = 0.0f;
+	GLfloat xOffset = 0.0f;
+	GLfloat yOffset = 0.0f;
+	bool mouseFirstMoved;
+
+	void createCallbacks();
+	static void handleKeys(GLFWwindow* window, int key, int code, int action, int mode);
+	static void handleMouse(GLFWwindow* window, double xPos, double yPos);
+	static void handleScroll(GLFWwindow* window, double xOffset, double yOffset);
+};
+
