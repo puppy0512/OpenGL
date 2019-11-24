@@ -12,7 +12,10 @@ public:
 	void mouseControl(GLfloat xChange, GLfloat yChange);
 	GLfloat scrollControl(GLfloat xOffset, GLfloat yOffset);
 	glm::mat4 calculateViewMatrix();
+
 	glm::vec3 getCameraPosition();
+	glm::vec3 getCameraDirection();
+
 	~Camera();
 
 private:
